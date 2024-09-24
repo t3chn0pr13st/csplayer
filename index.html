@@ -10,7 +10,7 @@
         function makeVideoSelector() {
             const queryString = document.location.search;
             const urlParams = new URLSearchParams(queryString);
-            document.getElementById('root').innerHTML = `<p style='color: blue'>Ready</p><p>Params: [${prm}]</p>`;
+            document.getElementById('root').innerHTML = `<p style='color: blue'>Ready</p><p>Params: [${queryString}]</p>`;
             const ytid = urlParams.get('yt');
             const rtid = urlParams.get('rt');
             if (ytid)
