@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player</title>
     <script type="text/javascript">
-        const prm = document.location.search;
-        document.getElementById("root").innerHTML = `<p style='color: blue'>Ready</p><p>Params: [${prm}]</p>`;
+        document.addEventListener('DOMContentLoaded', makeVideoSelector);
+
+        function makeVideoSelector() {
+            const prm = document.location.search;
+            document.getElementById('root').innerHTML = `<p style='color: blue'>Ready</p><p>Params: [${prm}]</p>`;
+        }
+        
     </script>
 </head>
 <body id="root">
