@@ -13,10 +13,14 @@
             document.getElementById('root').innerHTML = `<p style='color: blue'>Ready</p><p>Params: [${queryString}]</p>`;
             const ytid = urlParams.get('yt');
             const rtid = urlParams.get('rt');
-            if (ytid)
+            if (ytid) {
                 document.write(`<p><b>YoutubeId:</b> ${ytid}</p>`);
-            if (rtid)
+                document.write(`<iframe width="720" height="405" src="https://www.youtube.com/embed/${ytid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`);
+            }
+            if (rtid) {
                 document.write(`<p><b>RutubeId:</b> ${rtid}</p>`);
+                document.write(`<iframe width="720" height="405" src="https://rutube.ru/play/embed/${rtid}/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>`);
+            }
         }
         
     </script>
