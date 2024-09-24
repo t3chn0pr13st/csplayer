@@ -8,8 +8,15 @@
         document.addEventListener('DOMContentLoaded', makeVideoSelector);
 
         function makeVideoSelector() {
-            const prm = document.location.search;
+            const queryString = document.location.search;
+            const urlParams = new URLSearchParams(queryString);
             document.getElementById('root').innerHTML = `<p style='color: blue'>Ready</p><p>Params: [${prm}]</p>`;
+            const ytid = urlParams.get('yt');
+            const rtid = urlParams.get('rt');
+            if (ytid)
+                document.write(`<p><b>YoutubeId:</b> ${ytid}</p>`);
+            if (rtid)
+                document.write(`<p><b>RutubeId:</b> ${rtid}</p>`);
         }
         
     </script>
