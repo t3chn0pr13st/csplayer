@@ -23,25 +23,26 @@
     </style>
     <script type="text/javascript">
         let currentPlatform = '';
+        let rtPlayer = null;
         window.ytTemplate = null;
         window.rtTemplate = null;
 
         document.addEventListener('DOMContentLoaded', makeVideoSelector);
 
-        function htmlToNode(html) {
-            const template = document.createElement('template');
-            template.innerHTML = html;
-            const nNodes = template.content.childNodes.length;
-            if (nNodes !== 1) {
-                throw new Error(
-                    `html parameter must represent a single node; got ${nNodes}. ` +
-                    'Note that leading or trailing spaces around an element in your ' +
-                    'HTML, like " <img/> ", get parsed as text nodes neighbouring ' +
-                    'the element; call .trim() on your input to avoid this.'
-                );
-            }
-            return template.content.firstChild;
-        }
+        // function htmlToNode(html) {
+        //     const template = document.createElement('template');
+        //     template.innerHTML = html;
+        //     const nNodes = template.content.childNodes.length;
+        //     if (nNodes !== 1) {
+        //         throw new Error(
+        //             `html parameter must represent a single node; got ${nNodes}. ` +
+        //             'Note that leading or trailing spaces around an element in your ' +
+        //             'HTML, like " <img/> ", get parsed as text nodes neighbouring ' +
+        //             'the element; call .trim() on your input to avoid this.'
+        //         );
+        //     }
+        //     return template.content.firstChild;
+        // }
 
         function makeVideoSelector() {
             const queryString = document.location.search;
@@ -73,8 +74,43 @@
         function toggleVideo(platform){
             if (currentPlatform == platform) 
                 return;
+
+            if (currentPlatform == 'rt' && rtPlayer)
+            {
+                rtPlayer.contentWindow.postMessage(JSON.stringify({
+                    type: 'player:remove'
+                }));
+                window.removeEventListener('message', rtWindowMessageHanlder);
+            }
+
             document.getElementById('vids_wrapper').innerHTML = window[platform + 'Template'];
             currentPlatform = platform;
+
+            // player interaction init
+            setTimeout(() => {
+                if (platform == 'rt') {
+                    rtPlayer = document.getElementById('rtframe');
+                    window.addEventListener('message', rtWindowMessageHanlder);
+                }
+            }, 1000);
+        }
+
+        function rtWindowMessageHanlder(event) {
+            var message = JSON.parse(event.data);
+            console.log(message.type); // some type
+            switch (message.type) {
+                case 'player:changeState':
+                    //console.log(message.data.state); // текущее состояние плеера
+                    break;
+                case 'player:ready':
+                    setTimeout(() =>
+                        rtPlayer.contentWindow.postMessage(JSON.stringify({
+                            type: 'player:play'
+                        })),
+                    5000);
+                    //console.log('ready???');
+                    break;
+            };
         }
         
     </script>
