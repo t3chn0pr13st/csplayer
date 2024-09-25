@@ -49,7 +49,7 @@
             setupButtons();
             setTimeout(() => {
                 document.getElementById('switch_buttons_wrapper').classList.remove('notready');
-                const lastPlatform = document.getCookie('last_platform');
+                const lastPlatform = getCookie('last_platform');
                 if (lastPlatform)
                     toggleVideo(lastPlatform);
                 else
