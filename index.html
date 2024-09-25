@@ -153,12 +153,25 @@
             flex-direction: row;
         }
 
-        #platform_message, #loader {
+        #platform_message, #loader, #copyright {
             position: absolute;
-            top: 80px;
-            left: 20px;
             color: white;
             text-shadow: 0px 0px 4px #000000, 2px 2px 2px rgb(0 0 0 / 60%);
+        }
+
+        #platform_message, #loader {
+            top: 80px;
+            left: 20px;
+        }
+
+        #copyright {
+            bottom: 10px;
+            left: 20px;
+            font-size: 12px;
+        }
+
+        #copyright a {
+            color: white;
         }
 
         #switch_buttons_wrapper {
@@ -214,6 +227,9 @@
     </style>
 </head>
 <body id="root">
+    <div id="copyright">
+        <p>Разработка виджета для выбора платформы <a href="https://t.me/techn0pr13st" target="_blank">&copy; t3chn0pr13$t</a></p>
+    </div>
     <div id="loader" class="notready">
         <p>Подождите, идёт загрузка плеера...</p>
         <p>Если загрузка идет слишком долго, попробуйте выбрать другую платформу.</p>
