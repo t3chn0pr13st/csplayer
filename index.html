@@ -103,11 +103,10 @@
                     //console.log(message.data.state); // текущее состояние плеера
                     break;
                 case 'player:ready':
-                    setTimeout(() =>
-                        rtPlayer.contentWindow.postMessage(JSON.stringify({
-                            type: 'player:play'
-                        })),
-                    5000);
+                    setTimeout(() => {
+                        console.log('clikkod?');
+                        rtPlayer.contentWindow.document.querySelector('div#movie_player').click();
+                    }, 2000);
                     //console.log('ready???');
                     break;
             };
