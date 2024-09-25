@@ -45,6 +45,8 @@
             if (chatlink) {
                 window.chatLink = `https://t.me/${chatlink}`;
                 document.getElementById('chat_button').href = window.chatLink;
+            } else {
+                document.getElementById('chat_button').remove();
             }
             setupButtons();
 
