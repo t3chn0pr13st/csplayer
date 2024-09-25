@@ -227,48 +227,50 @@
     </style>
 </head>
 <body id="root">
-    <div id="copyright">
-        <p>Разработка виджета для выбора платформы <a href="https://t.me/techn0pr13st" target="_blank">&copy; t3chn0pr13$t</a></p>
-    </div>
-    <div id="loader" class="notready">
-        <p>Подождите, идёт загрузка плеера...</p>
-        <p>Если загрузка идет слишком долго, попробуйте выбрать другую платформу.</p>
-    </div>
-    <div id="vids_wrapper" style="position: relative">
-    </div>
-    <div id="switch_buttons">
-        <div id="switch_buttons_wrapper">
-            <a class="switch_button" data-vid="rt" href="#" title="Смотреть на RuTube" style="color: #000000;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                        d="M7 2h10c2.76 0 5 2.24 5 5v10c0 2.76-2.24 5-5 5H7c-2.76 0-5-2.24-5-5V7c0-2.76 2.24-5 5-5Zm6.06 11.75L15.25 17l.01-.02h2.81l-2.42-3.27c.89-.13 1.29-.4 1.62-.85.33-.45.5-1.17.5-2.13v-.75c0-.57-.06-1.02-.17-1.36-.11-.34-.28-.64-.54-.91-.27-.25-.57-.43-.93-.55-.37-.1-.82-.16-1.37-.16H5.93v10h2.51v-3.25h4.62ZM8.44 9.21h5.91c.35 0 .59.06.71.17.13.1.2.3.2.58v.84c0 .3-.08.49-.2.6-.12.11-.36.15-.71.15H8.44V9.21Z"
-                        fill="black"></path>
-                </svg> <span>RuTube</span> 
-            </a>
-            <a class="switch_button" data-vid="yt" href="#" title="Смотреть на YouTube" style="color: #000000;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                        d="M22.542 6.342a2.72 2.72 0 0 0-1.945-1.894C18.88 4 12 4 12 4s-6.88 0-8.595.448A2.72 2.72 0 0 0 1.46 6.342C1 8.012 1 11.5 1 11.5s0 3.487.46 5.158a2.72 2.72 0 0 0 1.945 1.894C5.12 19 12 19 12 19s6.88 0 8.595-.448a2.72 2.72 0 0 0 1.945-1.894C23 14.988 23 11.5 23 11.5s0-3.487-.46-5.158h.002ZM9.8 14.714V8.286l5.715 3.214L9.8 14.714Z"
-                        fill="red"></path>
-                </svg> <span>YouTube</span> 
-            </a>
-            <a class="switch_button" id="chat_button" target="_blank" data-vid="tg" href="#" title="Чат в телеграм" style="color: #000000;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240.1 240.1">
-                    <linearGradient id="Oval_1_" gradientUnits="userSpaceOnUse" x1="-838.041" y1="660.581" x2="-838.041" y2="660.3427"
-                        gradientTransform="matrix(1000 0 0 -1000 838161 660581)">
-                        <stop offset="0" style="stop-color:#2AABEE" />
-                        <stop offset="1" style="stop-color:#229ED9" />
-                    </linearGradient>
-                    <circle fill-rule="evenodd" clip-rule="evenodd" fill="url(#Oval_1_)" cx="120.1" cy="120.1" r="120.1" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF"
-                        d="M54.3,118.8c35-15.2,58.3-25.3,70-30.2 c33.3-13.9,40.3-16.3,44.8-16.4c1,0,3.2,0.2,4.7,1.4c1.2,1,1.5,2.3,1.7,3.3s0.4,3.1,0.2,4.7c-1.8,19-9.6,65.1-13.6,86.3 c-1.7,9-5,12-8.2,12.3c-7,0.6-12.3-4.6-19-9c-10.6-6.9-16.5-11.2-26.8-18c-11.9-7.8-4.2-12.1,2.6-19.1c1.8-1.8,32.5-29.8,33.1-32.3 c0.1-0.3,0.1-1.5-0.6-2.1c-0.7-0.6-1.7-0.4-2.5-0.2c-1.1,0.2-17.9,11.4-50.6,33.5c-4.8,3.3-9.1,4.9-13,4.8 c-4.3-0.1-12.5-2.4-18.7-4.4c-7.5-2.4-13.5-3.7-13-7.9C45.7,123.3,48.7,121.1,54.3,118.8z" />
-                </svg> <span>Чат</span>
-            </a>
+    <div id="background">
+        <div id="copyright">
+            <p>Разработка виджета для выбора платформы <a href="https://t.me/techn0pr13st" target="_blank">&copy; t3chn0pr13$t</a></p>
         </div>
-        <div id="platform_message">
-            <p>Выберите платформу для просмотра видео с помощью кнопок выше.</p>
-            <p>После начала воспроизведения вы можете развернуть видео на весь экран, чтобы кнопки не мешали просмотру.</p>
-            <p>Если вы еще не вступили в общий чат в телеграм, сверху есть кнопка Чат.</p>
+        <div id="loader" class="notready">
+            <p>Подождите, идёт загрузка плеера...</p>
+            <p>Если загрузка идет слишком долго, попробуйте выбрать другую платформу.</p>
+        </div>
+        <div id="vids_wrapper" style="position: relative">
+        </div>
+        <div id="switch_buttons">
+            <div id="switch_buttons_wrapper">
+                <a class="switch_button" data-vid="rt" href="#" title="Смотреть на RuTube" style="color: #000000;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M7 2h10c2.76 0 5 2.24 5 5v10c0 2.76-2.24 5-5 5H7c-2.76 0-5-2.24-5-5V7c0-2.76 2.24-5 5-5Zm6.06 11.75L15.25 17l.01-.02h2.81l-2.42-3.27c.89-.13 1.29-.4 1.62-.85.33-.45.5-1.17.5-2.13v-.75c0-.57-.06-1.02-.17-1.36-.11-.34-.28-.64-.54-.91-.27-.25-.57-.43-.93-.55-.37-.1-.82-.16-1.37-.16H5.93v10h2.51v-3.25h4.62ZM8.44 9.21h5.91c.35 0 .59.06.71.17.13.1.2.3.2.58v.84c0 .3-.08.49-.2.6-.12.11-.36.15-.71.15H8.44V9.21Z"
+                            fill="black"></path>
+                    </svg> <span>RuTube</span> 
+                </a>
+                <a class="switch_button" data-vid="yt" href="#" title="Смотреть на YouTube" style="color: #000000;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M22.542 6.342a2.72 2.72 0 0 0-1.945-1.894C18.88 4 12 4 12 4s-6.88 0-8.595.448A2.72 2.72 0 0 0 1.46 6.342C1 8.012 1 11.5 1 11.5s0 3.487.46 5.158a2.72 2.72 0 0 0 1.945 1.894C5.12 19 12 19 12 19s6.88 0 8.595-.448a2.72 2.72 0 0 0 1.945-1.894C23 14.988 23 11.5 23 11.5s0-3.487-.46-5.158h.002ZM9.8 14.714V8.286l5.715 3.214L9.8 14.714Z"
+                            fill="red"></path>
+                    </svg> <span>YouTube</span> 
+                </a>
+                <a class="switch_button" id="chat_button" target="_blank" data-vid="tg" href="#" title="Чат в телеграм" style="color: #000000;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240.1 240.1">
+                        <linearGradient id="Oval_1_" gradientUnits="userSpaceOnUse" x1="-838.041" y1="660.581" x2="-838.041" y2="660.3427"
+                            gradientTransform="matrix(1000 0 0 -1000 838161 660581)">
+                            <stop offset="0" style="stop-color:#2AABEE" />
+                            <stop offset="1" style="stop-color:#229ED9" />
+                        </linearGradient>
+                        <circle fill-rule="evenodd" clip-rule="evenodd" fill="url(#Oval_1_)" cx="120.1" cy="120.1" r="120.1" />
+                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF"
+                            d="M54.3,118.8c35-15.2,58.3-25.3,70-30.2 c33.3-13.9,40.3-16.3,44.8-16.4c1,0,3.2,0.2,4.7,1.4c1.2,1,1.5,2.3,1.7,3.3s0.4,3.1,0.2,4.7c-1.8,19-9.6,65.1-13.6,86.3 c-1.7,9-5,12-8.2,12.3c-7,0.6-12.3-4.6-19-9c-10.6-6.9-16.5-11.2-26.8-18c-11.9-7.8-4.2-12.1,2.6-19.1c1.8-1.8,32.5-29.8,33.1-32.3 c0.1-0.3,0.1-1.5-0.6-2.1c-0.7-0.6-1.7-0.4-2.5-0.2c-1.1,0.2-17.9,11.4-50.6,33.5c-4.8,3.3-9.1,4.9-13,4.8 c-4.3-0.1-12.5-2.4-18.7-4.4c-7.5-2.4-13.5-3.7-13-7.9C45.7,123.3,48.7,121.1,54.3,118.8z" />
+                    </svg> <span>Чат</span>
+                </a>
+            </div>
+            <div id="platform_message">
+                <p>Выберите платформу для просмотра видео с помощью кнопок выше.</p>
+                <p>После начала воспроизведения вы можете развернуть видео на весь экран, чтобы кнопки не мешали просмотру.</p>
+                <p>Если вы еще не вступили в общий чат в телеграм, сверху есть кнопка Чат.</p>
+            </div>
         </div>
     </div>
 </body>
