@@ -49,8 +49,19 @@
             setupButtons();
             setTimeout(() => {
                 document.getElementById('switch_buttons_wrapper').classList.remove('notready');
-                toggleVideo('rt');
+                const lastPlatform = document.getCookie('last_platform');
+                if (lastPlatform)
+                    toggleVideo(lastPlatform);
+                else
+                    toggleVideo('rt');
             }, 1000);
+        }
+
+        function getCookie(name) {
+            let matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
         }
 
         function setupButtons() {
@@ -79,13 +90,23 @@
             document.getElementById('vids_wrapper').innerHTML = window[platform + 'Template'];
             currentPlatform = platform;
 
+            [...document.querySelectorAll('.switch_button')].forEach(el => el.classList.remove('selected'));
+
+            const activeButton = document.querySelector(`.switch_button[data-vid=${platform}]`);
+            activeButton.classList.add('inprogress');
+
             // player interaction init
             setTimeout(() => {
                 if (platform == 'rt') {
                     rtPlayer = document.getElementById('rtframe');
                     window.addEventListener('message', rtWindowMessageHanlder);
                 }
+
+                activeButton.classList.remove('inprogress');
+                activeButton.classList.add('selected');
             }, 1000);
+
+            document.cookie = `last_platform=${platform}`;
         }
 
         function rtWindowMessageHanlder(event) {
@@ -147,7 +168,19 @@
             text-decoration: none;
             border-radius: 8px;
             box-shadow: inset 0 0 0 1px rgba(63, 63, 63, .11);
-            background-color: hsla(0, 0%, 96%, .3);;
+            background-color: hsla(0, 0%, 96%, .3);
+        }
+
+        .switch_button:hover {
+            background-color: hsla(0, 0%, 88%, 0.601);
+        }
+
+        .switch_button.inprogress {
+            background-color: hsla(0, 0%, 65%, 0.601);
+        }
+
+        .switch_button.selected {
+            background-color: #88da989e
         }
 
         .switch_button svg {
