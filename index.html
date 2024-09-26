@@ -144,6 +144,10 @@
             font-family: sans-serif;
         }
 
+        #background {
+            background-color: red;
+        }
+
         .title_buttons {
             position: relative;
         }
@@ -192,13 +196,14 @@
         }
 
         .switch_button {
+            cursor: pointer;
             align-items: center;
             display: flex;
             flex-direction: column;
             font-size: clamp(10px, 2vw, 13px);
             gap: 4px;
             width: 40px;
-            padding: 6px 16px;
+            padding: 8px 16px;
             text-decoration: none;
             border-radius: 8px;
             box-shadow: inset 0 0 0 1px rgba(63, 63, 63, .11);
@@ -240,20 +245,20 @@
         </div>
         <div id="switch_buttons">
             <div id="switch_buttons_wrapper">
-                <a class="switch_button" data-vid="rt" href="#" target="_self" title="Смотреть на RuTube" style="color: #000000;">
+                <div class="switch_button" data-vid="rt" href="#" target="_self" title="Смотреть на RuTube" style="color: #000000;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path
                             d="M7 2h10c2.76 0 5 2.24 5 5v10c0 2.76-2.24 5-5 5H7c-2.76 0-5-2.24-5-5V7c0-2.76 2.24-5 5-5Zm6.06 11.75L15.25 17l.01-.02h2.81l-2.42-3.27c.89-.13 1.29-.4 1.62-.85.33-.45.5-1.17.5-2.13v-.75c0-.57-.06-1.02-.17-1.36-.11-.34-.28-.64-.54-.91-.27-.25-.57-.43-.93-.55-.37-.1-.82-.16-1.37-.16H5.93v10h2.51v-3.25h4.62ZM8.44 9.21h5.91c.35 0 .59.06.71.17.13.1.2.3.2.58v.84c0 .3-.08.49-.2.6-.12.11-.36.15-.71.15H8.44V9.21Z"
                             fill="black"></path>
                     </svg> <span>RuTube</span> 
-                </a>
-                <a class="switch_button" data-vid="yt" href="#" target="_self" title="Смотреть на YouTube" style="color: #000000;">
+                </div>
+                <div class="switch_button" data-vid="yt" href="#" target="_self" title="Смотреть на YouTube" style="color: #000000;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path
                             d="M22.542 6.342a2.72 2.72 0 0 0-1.945-1.894C18.88 4 12 4 12 4s-6.88 0-8.595.448A2.72 2.72 0 0 0 1.46 6.342C1 8.012 1 11.5 1 11.5s0 3.487.46 5.158a2.72 2.72 0 0 0 1.945 1.894C5.12 19 12 19 12 19s6.88 0 8.595-.448a2.72 2.72 0 0 0 1.945-1.894C23 14.988 23 11.5 23 11.5s0-3.487-.46-5.158h.002ZM9.8 14.714V8.286l5.715 3.214L9.8 14.714Z"
                             fill="red"></path>
                     </svg> <span>YouTube</span> 
-                </a>
+                </div>
                 <a class="switch_button" id="chat_button" target="_blank" data-vid="tg" href="#" title="Чат в телеграм" style="color: #000000;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240.1 240.1">
                         <linearGradient id="Oval_1_" gradientUnits="userSpaceOnUse" x1="-838.041" y1="660.581" x2="-838.041" y2="660.3427"
