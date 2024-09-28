@@ -10,6 +10,7 @@
         let rtPlayer = null;
         window.ytTemplate = null;
         window.rtTemplate = null;
+        window.vkTemplate = null;
 
         document.addEventListener('DOMContentLoaded', makeVideoSelector);
 
@@ -35,12 +36,19 @@
             //wrapper.innerHTML = `<<p style='color: blue'>Ready</p><p>Params: [${queryString}]</p>>`;
             const ytid = urlParams.get('yt');
             const rtid = urlParams.get('rt');
+            const vkid = urlParams.get('vk');
             const chatlink = urlParams.get('tg');
             if (ytid) {
+                document.getElementById('ytbtn').classList.remove('notready');
                 window.ytTemplate = `<iframe class='vidframe' id='ytframe' style="position:absolute;top:0px;width:100%;height:100vh;" src="https://www.youtube.com/embed/${ytid}?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
             }
             if (rtid) {
+                document.getElementById('rtbtn').classList.remove('notready');
                 window.rtTemplate = `<iframe class='vidframe' id='rtframe' style="position:absolute;top:0px;width:100%;height:100vh;" src="https://rutube.ru/play/embed/${rtid}" frameBorder="0" allow="clipboard-write; autoplay" autoplay webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>`;
+            }
+            if (vkid) {
+                document.getElementById('vkbtn').classList.remove('notready');
+                window.vkTemplate = `<iframe class='vidframe' id='vkframe' style="position:absolute;top:0px;width:100%;height:100vh;" src="https://vk.com/video_ext.php?${vkid}&autoplay=1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>`;
             }
             if (chatlink) {
                 window.chatLink = `https://t.me/${chatlink}`;
@@ -58,6 +66,8 @@
                     const lastPlatform = getCookie('last_platform');
                     if (lastPlatform)
                         toggleVideo(lastPlatform);
+                    else if (vkid)
+                        toggleVideo('vk');
                     else
                         toggleVideo('rt');
                 }, 1000);
@@ -186,7 +196,7 @@
             color: white;
             display: flex;
             flex-direction: row;
-            gap: 16px;
+            gap: 8px;
         }
     
         #switch_buttons_wrapper>p {
@@ -245,14 +255,23 @@
         </div>
         <div id="switch_buttons">
             <div id="switch_buttons_wrapper">
-                <div class="switch_button" data-vid="rt" href="#" target="_self" title="Смотреть на RuTube" style="color: #000000;">
+                <div class="switch_button notready" id="vkbtn" data-vid="vk" title="Смотреть на VK Video"
+                    style="color: #000000;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M3.406 3.406C2 4.812 2 7.075 2 11.6v.8c0 4.525 0 6.788 1.406 8.194C4.812 22 7.075 22 11.6 22h.8c4.525 0 6.788 0 8.194-1.406C22 19.188 22 16.925 22 12.4v-.8c0-4.525 0-6.788-1.406-8.194C19.188 2 16.925 2 12.4 2h-.8C7.075 2 4.812 2 3.406 3.406Zm1.969 4.677h2.283c.075 3.817 1.759 5.434 3.092 5.767V8.083h2.15v3.292c1.317-.142 2.7-1.642 3.167-3.292h2.15c-.359 2.034-1.859 3.534-2.925 4.15 1.066.5 2.775 1.809 3.425 4.175H16.35c-.508-1.583-1.775-2.808-3.45-2.975v2.975h-.258c-4.559 0-7.159-3.125-7.267-8.325Z"
+                            fill="#4680C2"></path>
+                    </svg>
+                    <span>ВК.Видео</span>
+                </div>
+                <div class="switch_button notready" id="rtbtn" data-vid="rt" title="Смотреть на RuTube" style="color: #000000;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path
                             d="M7 2h10c2.76 0 5 2.24 5 5v10c0 2.76-2.24 5-5 5H7c-2.76 0-5-2.24-5-5V7c0-2.76 2.24-5 5-5Zm6.06 11.75L15.25 17l.01-.02h2.81l-2.42-3.27c.89-.13 1.29-.4 1.62-.85.33-.45.5-1.17.5-2.13v-.75c0-.57-.06-1.02-.17-1.36-.11-.34-.28-.64-.54-.91-.27-.25-.57-.43-.93-.55-.37-.1-.82-.16-1.37-.16H5.93v10h2.51v-3.25h4.62ZM8.44 9.21h5.91c.35 0 .59.06.71.17.13.1.2.3.2.58v.84c0 .3-.08.49-.2.6-.12.11-.36.15-.71.15H8.44V9.21Z"
                             fill="black"></path>
                     </svg> <span>RuTube</span> 
                 </div>
-                <div class="switch_button" data-vid="yt" href="#" target="_self" title="Смотреть на YouTube" style="color: #000000;">
+                <div class="switch_button notready" id="ytbtn" data-vid="yt" title="Смотреть на YouTube" style="color: #000000;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path
                             d="M22.542 6.342a2.72 2.72 0 0 0-1.945-1.894C18.88 4 12 4 12 4s-6.88 0-8.595.448A2.72 2.72 0 0 0 1.46 6.342C1 8.012 1 11.5 1 11.5s0 3.487.46 5.158a2.72 2.72 0 0 0 1.945 1.894C5.12 19 12 19 12 19s6.88 0 8.595-.448a2.72 2.72 0 0 0 1.945-1.894C23 14.988 23 11.5 23 11.5s0-3.487-.46-5.158h.002ZM9.8 14.714V8.286l5.715 3.214L9.8 14.714Z"
