@@ -11,6 +11,7 @@
         window.ytTemplate = null;
         window.rtTemplate = null;
         window.vkTemplate = null;
+        const hubWatchUrl = 'https://hub.yglk.ru/watch';
 
         document.addEventListener('DOMContentLoaded', makeVideoSelector);
 
@@ -29,9 +30,54 @@
         //     return template.content.firstChild;
         // }
 
+        function redirectToHubWatch(urlParams) {
+            const ytid = urlParams.get('yt');
+            if (!ytid || !ytid.trim()) {
+                return false;
+            }
+
+            const target = new URL(hubWatchUrl);
+            target.searchParams.set('yt', ytid.trim());
+            target.searchParams.set('embed', 'true');
+
+            const chatlink = urlParams.get('tg');
+            if (chatlink && chatlink.trim()) {
+                target.searchParams.set('tg', chatlink.trim());
+            }
+
+            const embedReferrer = sanitizeEmbedReferrer(document.referrer);
+            if (embedReferrer) {
+                target.searchParams.set('embed_ref', embedReferrer);
+            }
+
+            window.location.replace(target.toString());
+            return true;
+        }
+
+        function sanitizeEmbedReferrer(value) {
+            if (!value) {
+                return '';
+            }
+
+            try {
+                const referrerUrl = new URL(value);
+                if (referrerUrl.protocol !== 'http:' && referrerUrl.protocol !== 'https:') {
+                    return '';
+                }
+
+                return `${referrerUrl.origin}${referrerUrl.pathname}`;
+            } catch (_) {
+                return '';
+            }
+        }
+
         function makeVideoSelector() {
             const queryString = document.location.search;
             const urlParams = new URLSearchParams(queryString);
+            if (redirectToHubWatch(urlParams)) {
+                return;
+            }
+
             const wrapper = document.getElementById('vids_wrapper');
             //wrapper.innerHTML = `<<p style='color: blue'>Ready</p><p>Params: [${queryString}]</p>>`;
             const ytid = urlParams.get('yt');
