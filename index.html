@@ -50,8 +50,27 @@
                 target.searchParams.set('embed_ref', embedReferrer);
             }
 
+            showRedirectLoader();
             window.location.replace(target.toString());
             return true;
+        }
+
+        function showRedirectLoader() {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.innerHTML = '<p>Подождите, идёт загрузка плеера...</p><p>Открываем страницу просмотра.</p>';
+                loader.classList.remove('notready');
+            }
+
+            const platformMessage = document.getElementById('platform_message');
+            if (platformMessage) {
+                platformMessage.classList.add('notready');
+            }
+
+            const switchButtonsWrapper = document.getElementById('switch_buttons_wrapper');
+            if (switchButtonsWrapper) {
+                switchButtonsWrapper.classList.add('notready');
+            }
         }
 
         function sanitizeEmbedReferrer(value) {
