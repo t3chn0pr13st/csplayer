@@ -39,6 +39,24 @@
             const target = new URL(hubWatchUrl);
             target.searchParams.set('yt', ytid.trim());
             target.searchParams.set('embed', 'true');
+            copyTrimmedParams(urlParams, target, [
+                'rt',
+                'rutube',
+                'rutube_url',
+                'rutubeUrl',
+                'rutubeId',
+                'vk',
+                'vk_url',
+                'vkUrl',
+                'vkvideo',
+                'vkvideo_url',
+                'vkVideoUrl',
+                'oid',
+                'id',
+                'hash',
+                'hd',
+                'access_key'
+            ]);
 
             const chatlink = urlParams.get('tg');
             if (chatlink && chatlink.trim()) {
@@ -53,6 +71,15 @@
             showRedirectLoader();
             window.location.replace(target.toString());
             return true;
+        }
+
+        function copyTrimmedParams(sourceParams, targetUrl, names) {
+            names.forEach(name => {
+                sourceParams.getAll(name)
+                    .map(value => value.trim())
+                    .filter(value => value)
+                    .forEach(value => targetUrl.searchParams.append(name, value));
+            });
         }
 
         function showRedirectLoader() {
